@@ -129,29 +129,35 @@ const LoginForm: React.FC<LoginFormProps> = ({
   return (
     <div className="w-full max-w-md mx-auto space-y-6">
       {/* Header */}
-      <div className="text-center">
-        <h1 className="text-3xl font-bold text-gray-900 dark:text-white">
+      <div className="text-center animate-fade-in">
+        <div className="w-16 h-16 bg-gradient-to-r from-green-400 to-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 animate-scale-in">
+          <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+          </svg>
+        </div>
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white text-financial">
           Welcome back
         </h1>
-        <p className="mt-2 text-gray-600 dark:text-gray-400">
+        <p className="mt-2 text-gray-300">
           Please sign in to your account
         </p>
       </div>
 
       {/* Social Login Buttons */}
-      <div className="space-y-3">
-        {socialProviders.map((provider) => (
-          <SocialLoginButton
-            key={provider.id}
-            provider={provider}
-            onLogin={handleSocialLogin}
-            disabled={isLoading}
-          />
+      <div className="space-y-3 animate-slide-up" style={{animationDelay: '0.2s'}}>
+        {socialProviders.map((provider, index) => (
+          <div key={provider.id} className="animate-slide-in-left" style={{animationDelay: `${0.3 + index * 0.1}s`}}>
+            <SocialLoginButton
+              provider={provider}
+              onLogin={handleSocialLogin}
+              disabled={isLoading}
+            />
+          </div>
         ))}
       </div>
 
       {/* Divider */}
-      <div className="relative">
+      <div className="relative animate-fade-in" style={{animationDelay: '0.5s'}}>
         <div className="absolute inset-0 flex items-center">
           <div className="w-full border-t border-gray-300 dark:border-gray-600" />
         </div>
@@ -163,7 +169,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
       </div>
 
       {/* Login Form */}
-      <form onSubmit={handleSubmit} className="space-y-6" noValidate>
+      <form onSubmit={handleSubmit} className="space-y-6 animate-slide-up" style={{animationDelay: '0.6s'}} noValidate>
         <FormField
           id="email"
           name="email"
